@@ -4,9 +4,14 @@
   font-weight: 400;
   font-size: 1.6em;
 
+  --primary: #ab4aba;
+  --primary-2: #b658c4;
+  --color: rgba(255, 255, 255, 0.87);
+  --background-color: #242424;
+
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--color);
+  background-color: var(--background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,11 +25,11 @@
 
 a {
   font-weight: 500;
-  color: #ab4aba;
+  color: var(--primary);
   text-decoration: inherit;
 }
 a:hover {
-  color: #b658c4;
+  color: var(--primary-2);
 }
 
 body {
@@ -37,7 +42,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --color: #213547;
+    --background-color: #ffffff;
   }
 }

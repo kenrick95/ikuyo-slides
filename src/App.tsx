@@ -1,5 +1,6 @@
 import Slide from './Slides/Slide';
 import s from './App.module.css';
+import { DemoTimetable01 } from './Demo/DemoTimetable01';
 
 /*
 
@@ -61,6 +62,7 @@ function App() {
       </Slide>
       <Slide>
         <h1>How it looks like</h1>
+        <DemoTimetable01 />
       </Slide>
       <Slide>
         <h1>Nice things</h1>
