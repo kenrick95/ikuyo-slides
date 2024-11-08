@@ -1,5 +1,6 @@
 import Slide from './Slides/Slide';
 import s from './App.module.css';
+import './Demo/TimetableTimes.scss';
 import { DemoTimetable01 } from './Demo/DemoTimetable01';
 
 /*
