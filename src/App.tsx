@@ -89,27 +89,201 @@ function App() {
           {/* Because of that, I thought, hey why not make this myself... */}
           <li>Proof-of-concept: Timetable view</li>
           {/* Of course, I tried some of the popular itinerary planning apps out there, but to my knowledge, none focuses on this timetable view as the center piece. */}
-          <li>Columns are days, rows are time of day (24 hour, minute-level granularity)</li>
+          <li>
+            Columns are days, rows are time of day (24 hour, minute-level
+            granularity)
+          </li>
           {/* Let's make it very granular, at "minute" level of granularity */}
         </ul>
       </Slide>
       <Slide>
-        Isn't it Google Calendar "week view"?
+        <h1>Timetable View</h1>
+        <ul>
+          <li>
+            Similar view to "week view" of Google Calendar & Outlook Calendar
+          </li>
+          <li>
+            So how do they build it? <code>position: absolute</code> ewww
+          </li>
+          <li>
+            Doesn't that look more like a grid, therefore, should use CSS Grid?
+          </li>
+        </ul>
       </Slide>
       <Slide>
         <h1>Short Explainer on CSS Grid</h1>
         <ul>
-          <li>2D display system</li>
-          <li>Parent element need to declare lines (columns & rows)</li>
+          <li>Two-dimensional display system</li>
           <li>
-            Child element can declare line name (column/row) and it will be
-            placed there
+            Parent element can declare <em>template</em> (columns & rows)
           </li>
-          <li>Those that never declare will be auto-placed magically</li>
+          <li>
+            <em>Template</em> row & column will generate <em>lines</em>
+          </li>
+          <li>
+            Child element can declare which <em>line</em> (column/row) to be
+            placed at
+          </li>
         </ul>
       </Slide>
       <Slide>
-        <h1>How to (ab)use CSS Grid</h1>
+        <h1>Visualization of CSS Grid</h1>
+        <>3 rows x 5 columns</>
+        <pre>
+          display: grid;
+          <br />
+          grid-template-rows: 3em 4em 5em;
+          <br />
+          grid-template-columns: 3em 4em 5em 6em 7em;
+        </pre>
+        <div className={s.explainerGridContainer}>
+          <div className={s.explainerGrid}>
+            <div
+              className={s.explainerItem}
+              style={{
+                gridColumnStart: 2,
+                gridColumnEnd: 4,
+                gridRowStart: 1,
+                gridRowEnd: 3,
+              }}
+            >
+              <pre>
+                grid-column: 2 / 4;
+                <br />
+                grid-row: 1 / 3;
+              </pre>
+            </div>
+            <div
+              className={s.explainerItem}
+              style={{
+                gridColumnStart: 4,
+                gridColumnEnd: 6,
+                gridRowStart: 2,
+                gridRowEnd: 4,
+              }}
+            >
+              <pre>
+                grid-column: 4 / 6;
+                <br />
+                grid-row: 2 / 4;
+              </pre>
+            </div>
+          </div>
+          {[1, 2, 3, 4, 5, 6].map((line) => (
+            <div
+              key={line}
+              className={s.explainerLineVertical}
+              style={
+                {
+                  '--line': line,
+                } as React.CSSProperties
+              }
+            >
+              {line}
+            </div>
+          ))}
+          {[1, 2, 3, 4].map((line) => (
+            <div
+              key={line}
+              className={s.explainerLineHorizontal}
+              style={
+                {
+                  '--line': line,
+                } as React.CSSProperties
+              }
+            >
+              {line}
+            </div>
+          ))}
+        </div>
+      </Slide>
+      <Slide>
+        <h1>Interesting CSS Grid Fact</h1>
+        <span>
+          At row/column <em>template</em>, <em>Line</em> can be given a name or
+          more
+        </span>
+        <pre>
+          grid-template-columns: [col1] 100px [col2] 100px [col3] 100px [col4];
+        </pre>
+      </Slide>
+      <Slide>
+        <h1>CSS Grid Line Names</h1>
+        <pre>
+          display: grid;
+          <br />
+          grid-template-rows: 3em 3em 3em;
+          <br />
+          grid-template-columns: 3em [meow purr] 4em 5em [woof] 6em [roar] 7em;
+        </pre>
+        <div className={s.explainerGridContainer}>
+          <div className={s.explainerGrid2}>
+            <div
+              className={s.explainerItem}
+              style={{
+                gridColumnStart: 'meow',
+                gridColumnEnd: 'woof',
+                gridRowStart: 1,
+                gridRowEnd: 3,
+              }}
+            >
+              <pre>
+                grid-column: meow / woof;
+                <br />
+                grid-row: 1 / 4;
+              </pre>
+            </div>
+
+            <div
+              className={s.explainerItem}
+              style={{
+                gridColumnStart: 'purr',
+                gridColumnEnd: 'roar',
+                gridRowStart: 3,
+                gridRowEnd: 4,
+              }}
+            >
+              <pre>
+                grid-column: purr / roar;
+                <br />
+                grid-row: 3 / 4;
+              </pre>
+            </div>
+          </div>
+          {[1, 2, 3, 4, 5, 6].map((line) => (
+            <div
+              key={line}
+              className={s.explainerLineVertical}
+              style={
+                {
+                  '--line': line,
+                } as React.CSSProperties
+              }
+            >
+              {line}
+              {line === 2 ? <><br />meow</> : ''}
+              {line === 2 ? <><br />purr</> : ''}
+              {line === 4 ? <><br />woof</>  : ''}
+              {line === 5 ? <><br />roar</>  : ''}
+            </div>
+          ))}
+          {[1, 2, 3, 4].map((line) => (
+            <div
+              key={line}
+              className={s.explainerLineHorizontal}
+              style={
+                {
+                  '--line': line,
+                } as React.CSSProperties
+              }
+            >
+              {line}
+            </div>
+          ))}
+        </div>
+      </Slide>
+      <Slide>
+        <h1>What if?</h1>
         <ul>
           <li>Column: For each day, 1 start line and 1 end line</li>
           <li>

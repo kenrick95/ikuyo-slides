@@ -10,7 +10,7 @@
 }
 .asideRight {
   position: absolute;
-  right: 1em;
+  inset-inline-end: 1em;
 }
 .textCenter {
   text-align: center;
@@ -19,4 +19,52 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+.explainerGridContainer {
+  position: relative;
+  --item-size: 3em;
+  --margin-size: calc(var(--item-size));
+  --margin-size-v: calc(var(--item-size) * 1.5);
+}
+.explainerGrid {
+  outline: 5px solid var(--primary);
+  margin: var(--margin-size-v) var(--margin-size);
+  display: grid;
+  grid-template-rows: 3em 3em 3em;
+  grid-template-columns: 3em 4em 5em 6em 7em;
+}
+
+.explainerGrid2 {
+  outline: 5px solid var(--primary);
+  margin: var(--margin-size-v) var(--margin-size);
+  display: grid;
+  grid-template-rows: 3em 3em 3em;
+  grid-template-columns: 3em [meow purr] 4em 5em [woof] 6em [roar] 7em;
+}
+.explainerItem {
+  border: 5px solid #29a383;
+  text-align: center;
+  font-size: 0.8em;
+}
+.explainerLineVertical {
+  position: absolute;
+  inset-block-start: 0;
+  inset-block-end: 0;
+  inset-inline-start: calc(
+    var(--margin-size) + (((var(--line) - 1) * (var(--line) + 4) / 2) * 1em)
+  );
+  border-inline-start: 1px dashed var(--primary-light);
+  height: 100%;
+}
+
+.explainerLineHorizontal {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  inset-block-start: calc(
+    var(--margin-size-v) + var(--line) * var(--item-size) - var(--item-size)
+  );
+  border-block-start: 1px dashed var(--primary-light);
+  height: 100%;
 }
