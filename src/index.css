@@ -16,7 +16,7 @@
     sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  font-size: 1.6em;
+  font-size: 2.5em;
 
   --primary: #ab4aba;
   --primary-2: #b658c4;
@@ -60,6 +60,9 @@ body {
 pre {
   text-wrap: wrap;
   word-wrap: break-word;
+}
+h1, ul, pre {
+  margin: 0;
 }
 
 @media (prefers-color-scheme: light) {

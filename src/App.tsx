@@ -2,6 +2,7 @@ import Slide from './Slides/Slide';
 import s from './App.module.css';
 import './Demo/TimetableTimes.scss';
 import { DemoTimetable01 } from './Demo/DemoTimetable01';
+import { DemoTimetable02 } from './Demo/DemoTimetable02';
 import clsx from 'clsx';
 import excelSheetScreenshot from '/images/excel-itinerary.png';
 
@@ -30,6 +31,11 @@ Solving this turned out to be like solving a Leetcode problem.
 function App() {
   return (
     <div className={s.root}>
+      <div className={s.slideLink}>
+        <a href="https://kenrick95.org/slides/ikuyo/">
+          kenrick95.org/slides/ikuyo
+        </a>
+      </div>
       <Slide>
         <h1 className={s.textCenter}>
           (Ab)using CSS Grid to Build Timetable View on the Web
@@ -130,11 +136,19 @@ function App() {
         <h1>Visualization of CSS Grid</h1>
         <>3 rows x 5 columns</>
         <pre>
-          display: grid;
+          <span className={s.cssProperty}>display</span>: grid;
           <br />
-          grid-template-rows: 3em 4em 5em;
+          <span className={s.cssProperty}>grid-template-rows</span>:{' '}
+          <span className={s.cssLength}>50px</span>{' '}
+          <span className={s.cssLength}>50px</span>{' '}
+          <span className={s.cssLength}>50px</span>;
           <br />
-          grid-template-columns: 3em 4em 5em 6em 7em;
+          <span className={s.cssProperty}>grid-template-columns</span>:{' '}
+          <span className={s.cssLength}>50px</span>{' '}
+          <span className={s.cssLength}>60px</span>{' '}
+          <span className={s.cssLength}>70px</span>{' '}
+          <span className={s.cssLength}>80px</span>{' '}
+          <span className={s.cssLength}>90px</span>;
         </pre>
         <div className={s.explainerGridContainer}>
           <div className={s.explainerGrid}>
@@ -148,9 +162,9 @@ function App() {
               }}
             >
               <pre>
-                grid-column: 2 / 4;
+                <span className={s.cssProperty}>grid-column</span>: 2 / 4;
                 <br />
-                grid-row: 1 / 3;
+                <span className={s.cssProperty}>grid-row</span>: 1 / 3;
               </pre>
             </div>
             <div
@@ -163,9 +177,9 @@ function App() {
               }}
             >
               <pre>
-                grid-column: 4 / 6;
+                <span className={s.cssProperty}>grid-column</span>: 4 / 6;
                 <br />
-                grid-row: 2 / 4;
+                <span className={s.cssProperty}>grid-row</span>: 2 / 4;
               </pre>
             </div>
           </div>
@@ -178,9 +192,7 @@ function App() {
                   '--line': line,
                 } as React.CSSProperties
               }
-            >
-              {line}
-            </div>
+            ></div>
           ))}
           {[1, 2, 3, 4].map((line) => (
             <div
@@ -191,30 +203,39 @@ function App() {
                   '--line': line,
                 } as React.CSSProperties
               }
-            >
-              {line}
-            </div>
+            ></div>
           ))}
         </div>
       </Slide>
       <Slide>
         <h1>Interesting CSS Grid Fact</h1>
-        <span>
-          At row/column <em>template</em>, <em>Line</em> can be given a name or
-          more
-        </span>
+        <div className={s.textCenter}>
+          At row/column <em>template</em>,<br />
+          <em>Line</em> can be given a name or two or even more
+        </div>
         <pre>
-          grid-template-columns: [col1] 100px [col2] 100px [col3] 100px [col4];
+          <span className={s.cssProperty}>grid-template-columns</span>: [a]{' '}
+          <span className={s.cssLength}>100px</span> [b c d]{' '}
+          <span className={s.cssLength}>100px</span> [e]{' '}
+          <span className={s.cssLength}>100px</span> [f];
         </pre>
       </Slide>
       <Slide>
         <h1>CSS Grid Line Names</h1>
         <pre>
-          display: grid;
+          <span className={s.cssProperty}>display</span>: grid;
           <br />
-          grid-template-rows: 3em 3em 3em;
+          <span className={s.cssProperty}>grid-template-rows</span>:{' '}
+          <span className={s.cssLength}>50px</span>{' '}
+          <span className={s.cssLength}>50px</span>{' '}
+          <span className={s.cssLength}>50px</span>;
           <br />
-          grid-template-columns: 3em [meow purr] 4em 5em [woof] 6em [roar] 7em;
+          <span className={s.cssProperty}>grid-template-columns</span>:{' '}
+          <span className={s.cssLength}>50px</span> [meow purr]{' '}
+          <span className={s.cssLength}>60px</span>{' '}
+          <span className={s.cssLength}>70px</span>{' '}
+          <span className={s.cssLength}>80px</span>[woof]{' '}
+          <span className={s.cssLength}>90px</span> [roar] ;
         </pre>
         <div className={s.explainerGridContainer}>
           <div className={s.explainerGrid2}>
@@ -228,9 +249,9 @@ function App() {
               }}
             >
               <pre>
-                grid-column: meow / woof;
+                <span className={s.cssProperty}>grid-column</span>: meow / woof;
                 <br />
-                grid-row: 1 / 4;
+                <span className={s.cssProperty}>grid-row</span>: 1 / 4;
               </pre>
             </div>
 
@@ -244,9 +265,9 @@ function App() {
               }}
             >
               <pre>
-                grid-column: purr / roar;
+                <span className={s.cssProperty}>grid-column</span>: purr / roar;
                 <br />
-                grid-row: 3 / 4;
+                <span className={s.cssProperty}>grid-row</span>: 3 / 4;
               </pre>
             </div>
           </div>
@@ -260,11 +281,10 @@ function App() {
                 } as React.CSSProperties
               }
             >
-              {line}
-              {line === 2 ? <><br />meow</> : ''}
-              {line === 2 ? <><br />purr</> : ''}
-              {line === 4 ? <><br />woof</>  : ''}
-              {line === 5 ? <><br />roar</>  : ''}
+              {line === 2 ? <div className={s.explainerMarker}>meow</div> : ''}
+              {line === 2 ? <div className={s.explainerMarker}>purr</div> : ''}
+              {line === 5 ? <div className={s.explainerMarker}>woof</div> : ''}
+              {line === 6 ? <div className={s.explainerMarker}>roar</div> : ''}
             </div>
           ))}
           {[1, 2, 3, 4].map((line) => (
@@ -276,42 +296,194 @@ function App() {
                   '--line': line,
                 } as React.CSSProperties
               }
-            >
-              {line}
-            </div>
+            ></div>
           ))}
         </div>
       </Slide>
       <Slide>
-        <h1>What if?</h1>
+        <h1>Timetable?</h1>
         <ul>
-          <li>Column: For each day, 1 start line and 1 end line</li>
+          {/* So ideally my timetable which uses CSS Grid has columns that represent day and rows that represent minutes. */}
           <li>
-            Row: For each <b>minute</b>, 1 start line and 1 end line
+            Each <em>columns</em> represents one day
           </li>
-          <li>Also, need corresponding class name for each lines</li>
+          <li>
+            Each <em>row</em> represents one minute
+          </li>
+          <li>
+            Each <em>activity</em> is placed on the grid
+          </li>
+          <li>
+            <em>Activity</em> day determines the column
+          </li>
+          <li>
+            <em>Activity</em> start time determines which row to start at
+          </li>
+          <li>
+            <em>Activity</em> end time determines the row to end at
+          </li>
         </ul>
       </Slide>
       <Slide>
-        <h1>How it looks like</h1>
+        <h1>Grid for Timetable?</h1>
+        <ul>
+          <li>Number of columns depends on how many days the trip have</li>
+          <li>
+            Number of rows is fixed at 24 hours × 60 minutes ={' '}
+            <em>1440 rows</em>
+          </li>
+          <li>But I don't want to remember that row 132 is for 02:12...</li>
+          <li>
+            Have to make it more 🌈<em>semantic</em>🌈
+          </li>
+        </ul>
+      </Slide>
+      <Slide>
+        <h1>Semantic Grid</h1>
+        {/* Remember that line is in-between columns and rows? so for each line, it can be the start of something or end of something. For example, for the column 2, it can be the start of day 2, or end of day 1. So let's name them both "d2" and "de1" */}
+        <div>
+          Each <em>column</em> and <em>row</em> has named start line and end
+          line
+        </div>
+        {/* Similarly for each of the minute of day, it can be start of the minute or end of the previous minute. */}
+        <pre>
+          <span className={s.cssProperty}>display</span>: grid;
+          <br />
+          <span className={s.cssProperty}>grid-template-columns</span>: [d1]{' '}
+          <span className={s.cssLength}>100px</span> [de1 d2]{' '}
+          <span className={s.cssLength}>100px</span> [de2 d3]{' '}
+          <span className={s.cssLength}>100px</span> [de3];
+          <br />
+          <span className={s.cssProperty}>grid-template-rows</span>: [t0000]{' '}
+          <span className={s.cssLength}>1px</span> [te0000 t0001] <br />
+          {'                            '}
+          <span className={s.cssLength}>1px</span> [te0001 t0002] <br />
+          {'                            '}
+          <span className={s.cssLength}>1px</span> [te0002 t0003] <br />
+          {'                            '}
+          {'...'}
+          <br />
+          {'                            '}
+          <span className={s.cssLength}>1px</span> [te2358 t2359] <br />
+          {'                            '}
+          <span className={s.cssLength}>1px</span> [te2359];
+        </pre>
+      </Slide>
+      <Slide columns={2}>
+        <div className={s.column}>
+          <h1>Atomic!</h1>
+          {/* So Atomic CSS is a practice where we define one CSS class for each "function" that we want to use. In this case, let's define one CSS class for each of the line name */}
+          <span>
+            Let's give one CSS class per line name so our activity can use these
+            classes to position itself
+          </span>
+        </div>
+        <pre>
+          <span className={s.cssClass}>.t0000 {'{'}</span>
+          <br />
+          {'    '}
+          <span className={s.cssProperty}>grid-row-start</span>: t0000; <br />
+          <span className={s.cssClass}>{'}'}</span>
+          <br />
+          <span className={s.cssClass}>.te0000 {'{'}</span>
+          <br />
+          {'    '}
+          <span className={s.cssProperty}>grid-row-end</span>: {'  '}te0000;{' '}
+          <br />
+          <span className={s.cssClass}>{'}'}</span>
+          <br />
+          <span className={s.cssClass}>.t0001 {'{'}</span>
+          <br />
+          {'    '}
+          <span className={s.cssProperty}>grid-row-start</span>: t0001; <br />
+          <span className={s.cssClass}>{'}'}</span>
+          <br />
+          <span className={s.cssClass}>.te0001 {'{'}</span>
+          <br />
+          {'    '}
+          <span className={s.cssProperty}>grid-row-end</span>: {'  '}te0001;{' '}
+          <br />
+          <span className={s.cssClass}>{'}'}</span>
+          <br />
+        </pre>
+      </Slide>
+      <Slide>
+        {/* Demo here, show devtool */}
         <DemoTimetable01 />
       </Slide>
       <Slide>
-        <h1>Nice things</h1>
+        <h1>Nice Things</h1>
         <ul>
           <li>Don't need to calculate size of each element</li>
+          {/* Positioning is all done using CSS, so I don't need to care of the pixel location in the grid */}
           <li>Meaningful CSS class name!</li>
+          {/* If the activity time changes, all I need to do is to update the CSS class name */}
           <li>
-            Can build frozen column and row easily using CSS position sticky
+            Can build frozen column and row easily using CSS{' '}
+            <code>position: sticky</code>
+          </li>
+          {/* Apparently it works pretty well */}
+        </ul>
+      </Slide>
+      <Slide>
+        <h1>Not So Nice Thing: Overlapping Event</h1>
+        <ul>
+          {/* With overlapping event, now I have to create extra column for within the day.  */}
+          <li>How many columns in a day?</li>
+          {/* After solving that, then for each activity, which "column" of the day it should be positioned at? */}
+          <li>How to position each activity within the day?</li>
+          {/* And how to "expand" an activity so that it takes up the whole column? */}
+          <li>
+            How to make non-overlapping activity takes up the whole column?
           </li>
         </ul>
       </Slide>
       <Slide>
-        <h1>Overlapping events?</h1>
+        {/* Demo here, show devtool */}
+        <DemoTimetable02 />
+      </Slide>
+      <Slide>
+        <h1>Leetcode Question 1</h1>
+        <div>
+          Given a list of activities, each with start time and end time. Some
+          might overlap with one another.
+          <br />
+          How many maximum overlaps do I have?
+          <br />
+          Solving this gives number of columns needed for each day.
+        </div>
+      </Slide>
+      <Slide>
+        <h1>Leetcode Question 2</h1>
+        <div>
+          Given a list of activities, each with start time and end time. Some
+          might overlap with one another.
+          <br />
+          Given an activity, if it has overlap with other activity, which ones
+          does it overlap with?
+          <br />
+          Solving this gives which column in the day one activity belongs to.
+        </div>
+      </Slide>
+      <Slide>
+        <h1>Current Features:</h1>
         <ul>
-          <li>How many overlaps in a day?</li>
-          <li>How to position each event within the day?</li>
-          <li>How to make non-overlapping event takes up the whole column?</li>
+          <li>Timetable view</li>
+          <li>List view</li>
+          <li>Trip sharing</li>
+        </ul>
+        <a href="https://ikuyo.kenrick95.org/trip/2617cd98-a229-45d4-9617-5265d52317cd">
+          🔗 Demo on actual site (private link)
+        </a>
+      </Slide>
+      <Slide>
+        <h1>Feature Ideas</h1>
+        <ul>
+          <li>Public trip view</li>
+          <li>Duplicate trip</li>
+          <li>Expense tracking</li>
+          <li>Accommodation overview</li>
+          <li>Commenting on activity/trip</li>
         </ul>
       </Slide>
       <Slide>
@@ -320,6 +492,7 @@ function App() {
         <a href="https://github.com/kenrick95/ikuyo">
           🐙 github.com/kenrick95/ikuyo
         </a>
+
         <a href="https://bsky.app/profile/kenrick95.org">🦋 @kenrick95.org</a>
       </Slide>
     </div>

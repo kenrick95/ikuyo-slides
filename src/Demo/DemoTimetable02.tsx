@@ -15,12 +15,12 @@ const times = new Array(24).fill(0).map((_, i) => {
   );
 });
 
-export function DemoTimetable01() {
+export function DemoTimetable02() {
   return (
     <div
       className={s.timetable}
       style={{
-        gridTemplateColumns: `[time] 45px [d1] 1fr [de1 d2] 1fr [de2 d3] 1fr [de3]`,
+        gridTemplateColumns: `[time] 45px [d1 d1-c1] minmax(30px, 180fr) [d1-c2] minmax(30px, 180fr) [de1 d2 d2-c1] minmax(30px, 180fr) [d2-c2] minmax(30px, 180fr) [de2 d3] minmax(120px, 360fr) [de3]`,
       }}
     >
       <div className={clsx(s.timetableHeader)}>🕜</div>
@@ -30,15 +30,44 @@ export function DemoTimetable01() {
       <div className={clsx(s.timetableHeader, 'd2', 'de2')}>13 Dec</div>
       <div className={clsx(s.timetableHeader, 'd3', 'de3')}>14 Dec</div>
 
-      
       <div className={clsx(s.timetableItem, 't0800', 'te1530', 'd1', 'de1')}>
         ✈️ NRT → SIN (TR809)
       </div>
       <div className={clsx(s.timetableItem, 't1630', 'te1700', 'd1', 'de1')}>
         Check in hotel
-      </div> 
-      <div className={clsx(s.timetableItem, 't1800', 'te2030', 'd1', 'de1')}>
-        Dinner + Shopping at Orchard Road
+      </div>
+      <div
+        className={clsx(
+          s.timetableItem,
+          s.highlight,
+          't1800',
+          'te1915',
+          'd1-c1'
+        )}
+      >
+        Dinner at Orchard
+      </div>
+      <div
+        className={clsx(
+          s.timetableItem,
+          s.highlight,
+          't1830',
+          'te2030',
+          'd1-c2'
+        )}
+      >
+        Shopping at Orchard Road
+      </div>
+      <div
+        className={clsx(
+          s.timetableItem,
+          s.highlight,
+          't2000',
+          'te2200',
+          'd1-c1'
+        )}
+      >
+        Street performance at Orchard Road
       </div>
 
       <div className={clsx(s.timetableItem, 't0000', 'te0700', 'd2', 'de2')}>
@@ -56,13 +85,48 @@ export function DemoTimetable01() {
       <div className={clsx(s.timetableItem, 't1230', 'te1330', 'd2', 'de2')}>
         Lunch
       </div>
-      <div className={clsx(s.timetableItem, 't1400', 'te1800', 'd2', 'de2')}>
-        Gardens by the Bay: Cloud Forest & Flower Dome
+      <div
+        className={clsx(
+          s.timetableItem,
+          s.highlight,
+          't1400',
+          'te1800',
+          'd2-c1'
+        )}
+      >
+        Gardens by the Bay: Cloud Forest
       </div>
-      <div className={clsx(s.timetableItem, 't1830', 'te1930', 'd2', 'de2')}>
+      <div
+        className={clsx(
+          s.timetableItem,
+          s.highlight,
+          't1400',
+          'te1800',
+          'd2-c2'
+        )}
+      >
+        Gardens by the Bay: Flower Dome
+      </div>
+      <div
+        className={clsx(
+          s.timetableItem,
+          s.highlight,
+          't1830',
+          'te2000',
+          'd2-c1'
+        )}
+      >
         Dinner
       </div>
-      <div className={clsx(s.timetableItem, 't1930', 'te2030', 'd2', 'de2')}>
+      <div
+        className={clsx(
+          s.timetableItem,
+          s.highlight,
+          't1915',
+          'te2030',
+          'd2-c2'
+        )}
+      >
         Gardens by the Bay: Garden Rhapsody
       </div>
       <div className={clsx(s.timetableItem, 't2100', 'te2359', 'd2', 'de2')}>
@@ -75,7 +139,7 @@ export function DemoTimetable01() {
       <div className={clsx(s.timetableItem, 't0530', 'te0600', 'd3', 'de3')}>
         Check out hotel
       </div>
-      
+
       <div className={clsx(s.timetableItem, 't0855', 'te1800', 'd3', 'de3')}>
         ✈️ SIN → NRT (TR874)
       </div>

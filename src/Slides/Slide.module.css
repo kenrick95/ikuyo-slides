@@ -9,3 +9,8 @@
   justify-content: center;
   position: relative;
 }
+.twoColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}

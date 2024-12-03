@@ -15,47 +15,83 @@
 .textCenter {
   text-align: center;
 }
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.cssClass {
+  color: #f8d49d;
+}
+.cssProperty {
+  color: #87cceb;
+}
+.cssLength {
+  color: #d2ffd5;
+}
 .imageFit {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
-
+.slideLink {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 20px;
+  z-index: 2;
+  background-color: var(--background-color);
+  padding: 2px 5px;
+  border-top-left-radius: 3px;
+}
 .explainerGridContainer {
   position: relative;
-  --item-size: 3em;
+  --item-size: 50px;
   --margin-size: calc(var(--item-size));
-  --margin-size-v: calc(var(--item-size) * 1.5);
+  --margin-size-v: calc(var(--item-size) * 2.8);
 }
 .explainerGrid {
   outline: 5px solid var(--primary);
-  margin: var(--margin-size-v) var(--margin-size);
+  margin: var(--margin-size-v) var(--margin-size) var(--margin-size)
+    var(--margin-size);
   display: grid;
-  grid-template-rows: 3em 3em 3em;
-  grid-template-columns: 3em 4em 5em 6em 7em;
+  grid-template-rows: 50px 50px 50px;
+  grid-template-columns: 50px 60px 70px 80px 90px;
 }
 
 .explainerGrid2 {
   outline: 5px solid var(--primary);
-  margin: var(--margin-size-v) var(--margin-size);
+  margin: var(--margin-size-v) var(--margin-size) var(--margin-size)
+    var(--margin-size);
   display: grid;
-  grid-template-rows: 3em 3em 3em;
-  grid-template-columns: 3em [meow purr] 4em 5em [woof] 6em [roar] 7em;
+  grid-template-rows: 50px 50px 50px;
+  grid-template-columns: 50px [meow purr] 60px 70px 80px [woof] 90px [roar];
 }
 .explainerItem {
-  border: 5px solid #29a383;
+  border: 3px solid #29a383;
   text-align: center;
-  font-size: 0.8em;
+  font-size: 12px;
 }
 .explainerLineVertical {
   position: absolute;
   inset-block-start: 0;
   inset-block-end: 0;
   inset-inline-start: calc(
-    var(--margin-size) + (((var(--line) - 1) * (var(--line) + 4) / 2) * 1em)
+    var(--margin-size) + (((var(--line) - 1) * (var(--line) + 8) * 5) * 1px)
   );
   border-inline-start: 1px dashed var(--primary-light);
-  height: 100%;
+}
+.explainerLineVertical::before {
+  counter-reset: variable var(--line);
+  content: counter(variable);
+  transform: translateX(-50%);
+  background-color: rgb(0 0 0 / 60%);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .explainerLineHorizontal {
@@ -66,5 +102,29 @@
     var(--margin-size-v) + var(--line) * var(--item-size) - var(--item-size)
   );
   border-block-start: 1px dashed var(--primary-light);
-  height: 100%;
+}
+
+.explainerLineHorizontal::before {
+  counter-reset: variable var(--line);
+  content: counter(variable);
+  transform: translateY(-50%);
+  background-color: rgb(0 0 0 / 60%);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.explainerMarker {
+  background-color: rgb(0 0 0 / 60%);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
 }
