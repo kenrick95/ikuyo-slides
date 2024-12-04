@@ -14,3 +14,6 @@
   grid-template-columns: 1fr 1fr;
   gap: 1em;
 }
+.skipped {
+  display: none !important;
+}

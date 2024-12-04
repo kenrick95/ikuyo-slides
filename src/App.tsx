@@ -55,21 +55,19 @@ function App() {
           <li>Front-End Dev at Shopee</li>
           <li>
             Last time talked in{' '}
-            <a href="https://kenrick95.org/slides/nikku/">Geekcamp 2019</a>
+            <a href="https://kenrick95.org/slides/nikku/">Geekcamp in 2019</a>
           </li>
         </ul>
       </Slide>
       <Slide>
         <h1>Why</h1>
-        <span>Post-pandemic travelling</span>
-        {/* After pandemic, I've increased my travelling frequency. The most difficult part of travelling for me is the planning part. On what to do in the destinations. Because I wanted to have to make full use of my time. */}
-      </Slide>
-      <Slide>
-        <h1>Travel Planning</h1>
+        <span></span>
         <ul>
-          <li>Excel sheet</li>
+          <li>Post-pandemic travelling</li>
+          {/* After pandemic, I've increased my travelling frequency. The most difficult part of travelling for me is the planning part. On what to do in the destinations. Because I wanted to have to make full use of my time. */}
+          <li>Excel sheet for itinerary planning</li>
           {/* With that, I usually have Excel sheets of the places I wanted to visit and plan the timings and routes on how go. */}
-          <li>Collaboration</li>
+          {/* <li>Collaboration</li> */}
           {/* Aside from that, I also travel together with friends, so have to take account on their preferences and schedules. */}
         </ul>
       </Slide>
@@ -80,6 +78,7 @@ function App() {
         {/* Building it once is fine, however, when plan changes, it is quite a pain to edit them. Because now editing when there are changes is pain, because now I have to deal with cell unmerge and merge. */}
         {/* Besides that, the granularity is per-hour, so I need to keep rounding up or down activity duration. */}
         {/* Moreover, since I build this in timetable view, if I need a "day-by-day" plan, I need to manually copy over to a different sheet. */}
+        <h1>Timetable View</h1>
         <img src={excelSheetScreenshot} className={s.imageFit} />
         <span>
           My itinerary Excel sheet for{' '}
@@ -89,35 +88,29 @@ function App() {
         </span>
       </Slide>
       <Slide>
-        <h1>Let's Build It Myself</h1>
+        <h1>Pain points</h1>
         <ul>
-          <li>Idea: Itinerary planning web app</li>
+          <li>Editing cells</li>
+          <li>Syncing for day plan</li>
+          <li>Collaboration</li>
+        </ul>
+      </Slide>
+      <Slide>
+        <h1>What</h1>
+        <ul>
+          <li>Itinerary planning web app</li>
           {/* Because of that, I thought, hey why not make this myself... */}
-          <li>Proof-of-concept: Timetable view</li>
+          <li>Timetable view as main feature</li>
           {/* Of course, I tried some of the popular itinerary planning apps out there, but to my knowledge, none focuses on this timetable view as the center piece. */}
-          <li>
-            Columns are days, rows are time of day (24 hour, minute-level
-            granularity)
-          </li>
+          <li>Columns are days, rows are time of day</li>
           {/* Let's make it very granular, at "minute" level of granularity */}
+          <li>Google Calendar or Outlook Calendar "week" view</li>
+          {/* Google Calendar & Outlook Calendar uses absolute positioning. Not satisfying. */}
+          <li>CSS Grid</li>
         </ul>
       </Slide>
       <Slide>
-        <h1>Timetable View</h1>
-        <ul>
-          <li>
-            Similar view to "week view" of Google Calendar & Outlook Calendar
-          </li>
-          <li>
-            So how do they build it? <code>position: absolute</code> ewww
-          </li>
-          <li>
-            Doesn't that look more like a grid, therefore, should use CSS Grid?
-          </li>
-        </ul>
-      </Slide>
-      <Slide>
-        <h1>Short Explainer on CSS Grid</h1>
+        <h1>CSS Grid</h1>
         <ul>
           <li>Two-dimensional display system</li>
           <li>
@@ -129,6 +122,9 @@ function App() {
           <li>
             Child element can declare which <em>line</em> (column/row) to be
             placed at
+          </li>
+          <li>
+            <em>Line</em> can be given a name or two or even more
           </li>
         </ul>
       </Slide>
@@ -206,19 +202,6 @@ function App() {
             ></div>
           ))}
         </div>
-      </Slide>
-      <Slide>
-        <h1>Interesting CSS Grid Fact</h1>
-        <div className={s.textCenter}>
-          At row/column <em>template</em>,<br />
-          <em>Line</em> can be given a name or two or even more
-        </div>
-        <pre>
-          <span className={s.cssProperty}>grid-template-columns</span>: [a]{' '}
-          <span className={s.cssLength}>100px</span> [b c d]{' '}
-          <span className={s.cssLength}>100px</span> [e]{' '}
-          <span className={s.cssLength}>100px</span> [f];
-        </pre>
       </Slide>
       <Slide>
         <h1>CSS Grid Line Names</h1>
@@ -371,12 +354,9 @@ function App() {
       </Slide>
       <Slide columns={2}>
         <div className={s.column}>
-          <h1>Atomic!</h1>
+          <h1>Atomic</h1>
           {/* So Atomic CSS is a practice where we define one CSS class for each "function" that we want to use. In this case, let's define one CSS class for each of the line name */}
-          <span>
-            Let's give one CSS class per line name so our activity can use these
-            classes to position itself
-          </span>
+          <span>One CSS class per line name</span>
         </div>
         <pre>
           <span className={s.cssClass}>.t0000 {'{'}</span>
@@ -408,7 +388,6 @@ function App() {
         </pre>
       </Slide>
       <Slide>
-        {/* Demo here, show devtool */}
         <DemoTimetable01 />
       </Slide>
       <Slide>
@@ -416,7 +395,7 @@ function App() {
         <ul>
           <li>Don't need to calculate size of each element</li>
           {/* Positioning is all done using CSS, so I don't need to care of the pixel location in the grid */}
-          <li>Meaningful CSS class name!</li>
+          <li>Meaningful positioning</li>
           {/* If the activity time changes, all I need to do is to update the CSS class name */}
           <li>
             Can build frozen column and row easily using CSS{' '}
@@ -442,7 +421,7 @@ function App() {
         {/* Demo here, show devtool */}
         <DemoTimetable02 />
       </Slide>
-      <Slide>
+      <Slide skipped>
         <h1>Leetcode Question 1</h1>
         <div>
           Given a list of activities, each with start time and end time. Some
@@ -453,7 +432,7 @@ function App() {
           Solving this gives number of columns needed for each day.
         </div>
       </Slide>
-      <Slide>
+      <Slide skipped>
         <h1>Leetcode Question 2</h1>
         <div>
           Given a list of activities, each with start time and end time. Some
@@ -466,17 +445,21 @@ function App() {
         </div>
       </Slide>
       <Slide>
-        <h1>Current Features:</h1>
+        <h1>Demo</h1>
+        <a href="https://ikuyo.kenrick95.org/trip/2617cd98-a229-45d4-9617-5265d52317cd">
+          🔗 Demo on actual site (private link)
+        </a>
+        <div>Current features:</div>
         <ul>
           <li>Timetable view</li>
           <li>List view</li>
           <li>Trip sharing</li>
         </ul>
-        <a href="https://ikuyo.kenrick95.org/trip/2617cd98-a229-45d4-9617-5265d52317cd">
-          🔗 Demo on actual site (private link)
-        </a>
+        <div>
+          More features to come <small>(maybe)</small>
+        </div>
       </Slide>
-      <Slide>
+      <Slide skipped>
         <h1>Feature Ideas</h1>
         <ul>
           <li>Public trip view</li>
@@ -492,7 +475,6 @@ function App() {
         <a href="https://github.com/kenrick95/ikuyo">
           🐙 github.com/kenrick95/ikuyo
         </a>
-
         <a href="https://bsky.app/profile/kenrick95.org">🦋 @kenrick95.org</a>
       </Slide>
     </div>

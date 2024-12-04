@@ -5,12 +5,20 @@ import clsx from 'clsx';
 function Slide({
   children,
   columns,
+  skipped,
 }: {
   children: React.ReactNode;
   columns?: number;
+  skipped?: boolean;
 }) {
   return (
-    <div className={clsx(s.slide, columns === 2 ? s.twoColumns : '')}>
+    <div
+      className={clsx(
+        s.slide,
+        columns === 2 ? s.twoColumns : '',
+        skipped ? s.skipped : ''
+      )}
+    >
       {children}
     </div>
   );
