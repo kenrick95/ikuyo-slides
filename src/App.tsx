@@ -38,7 +38,11 @@ function App() {
       </div>
       <Slide>
         <h1 className={s.textCenter}>
-          (Ab)using CSS Grid to Build Timetable View on the Web
+          (Ab)using CSS Grid
+          <br />
+          to Build Timetable View
+          <br />
+          on the Web
         </h1>
       </Slide>
       <Slide>
@@ -60,12 +64,19 @@ function App() {
         </ul>
       </Slide>
       <Slide>
+        <h1>What</h1>
+        <span>
+          Building an itinerary planning app on the web
+        </span>
+      </Slide>
+      <Slide>
         <h1>Why</h1>
-        <span></span>
+
         <ul>
-          <li>Post-pandemic travelling</li>
+          <li>Itinerary planning for travel</li>
           {/* After pandemic, I've increased my travelling frequency. The most difficult part of travelling for me is the planning part. On what to do in the destinations. Because I wanted to have to make full use of my time. */}
-          <li>Excel sheet for itinerary planning</li>
+          <li>Excel sheet</li>
+          <li>Timetable view</li>
           {/* With that, I usually have Excel sheets of the places I wanted to visit and plan the timings and routes on how go. */}
           {/* <li>Collaboration</li> */}
           {/* Aside from that, I also travel together with friends, so have to take account on their preferences and schedules. */}
@@ -78,7 +89,6 @@ function App() {
         {/* Building it once is fine, however, when plan changes, it is quite a pain to edit them. Because now editing when there are changes is pain, because now I have to deal with cell unmerge and merge. */}
         {/* Besides that, the granularity is per-hour, so I need to keep rounding up or down activity duration. */}
         {/* Moreover, since I build this in timetable view, if I need a "day-by-day" plan, I need to manually copy over to a different sheet. */}
-        <h1>Timetable View</h1>
         <img src={excelSheetScreenshot} className={s.imageFit} />
         <span>
           My itinerary Excel sheet for{' '}
@@ -88,7 +98,7 @@ function App() {
         </span>
       </Slide>
       <Slide>
-        <h1>Pain points</h1>
+        <h1>Pain Points</h1>
         <ul>
           <li>Editing cells</li>
           <li>Syncing for day plan</li>
@@ -96,9 +106,8 @@ function App() {
         </ul>
       </Slide>
       <Slide>
-        <h1>What</h1>
+        <h1>Itinerary Planning App on the Web</h1>
         <ul>
-          <li>Itinerary planning web app</li>
           {/* Because of that, I thought, hey why not make this myself... */}
           <li>Timetable view as main feature</li>
           {/* Of course, I tried some of the popular itinerary planning apps out there, but to my knowledge, none focuses on this timetable view as the center piece. */}
@@ -284,35 +293,28 @@ function App() {
         </div>
       </Slide>
       <Slide>
-        <h1>Timetable?</h1>
+        <h1>Timetable in CSS Grid</h1>
         <ul>
           {/* So ideally my timetable which uses CSS Grid has columns that represent day and rows that represent minutes. */}
           <li>
-            Each <em>columns</em> represents one day
+            Grid <em>columns</em> represents one day
           </li>
           <li>
-            Each <em>row</em> represents one minute
+            Grid <em>row</em> represents one minute
           </li>
           <li>
-            Each <em>activity</em> is placed on the grid
-          </li>
-          <li>
-            <em>Activity</em> day determines the column
-          </li>
-          <li>
-            <em>Activity</em> start time determines which row to start at
-          </li>
-          <li>
-            <em>Activity</em> end time determines the row to end at
+            Each <em>activity</em> is a child element of the grid
           </li>
         </ul>
       </Slide>
       <Slide>
-        <h1>Grid for Timetable?</h1>
+        <h1>Timetable in CSS Grid</h1>
         <ul>
-          <li>Number of columns depends on how many days the trip have</li>
           <li>
-            Number of rows is fixed at 24 hours × 60 minutes ={' '}
+            Number of <em>columns</em> depends on how many days the trip have
+          </li>
+          <li>
+            Number of <em>rows</em> is fixed at 24 hours × 60 minutes ={' '}
             <em>1440 rows</em>
           </li>
           <li>But I don't want to remember that row 132 is for 02:12...</li>
@@ -393,27 +395,30 @@ function App() {
       <Slide>
         <h1>Nice Things</h1>
         <ul>
-          <li>Don't need to calculate size of each element</li>
+          <li>
+            Don't need to calculate pixel size and position of each activity
+          </li>
           {/* Positioning is all done using CSS, so I don't need to care of the pixel location in the grid */}
           <li>Meaningful positioning</li>
           {/* If the activity time changes, all I need to do is to update the CSS class name */}
           <li>
-            Can build frozen column and row easily using CSS{' '}
+            Easily build frozen column and row using CSS{' '}
             <code>position: sticky</code>
           </li>
           {/* Apparently it works pretty well */}
         </ul>
       </Slide>
       <Slide>
-        <h1>Not So Nice Thing: Overlapping Event</h1>
+        <h1>Not So Nice Thing: Overlapping Activity</h1>
         <ul>
-          {/* With overlapping event, now I have to create extra column for within the day.  */}
+          {/* With overlapping activity, now I have to create extra column for within the day.  */}
           <li>How many columns in a day?</li>
           {/* After solving that, then for each activity, which "column" of the day it should be positioned at? */}
-          <li>How to position each activity within the day?</li>
+          <li>Which column should an activity be placed upon?</li>
           {/* And how to "expand" an activity so that it takes up the whole column? */}
           <li>
-            How to make non-overlapping activity takes up the whole column?
+            How to make non-overlapping activity take up the rest of the column
+            space?
           </li>
         </ul>
       </Slide>
